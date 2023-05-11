@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import './style.css'
+import "./style.css";
+import Elemento from "./Elemento";
 
 const getLocalItems = () => {
   let list = localStorage.getItem("items");
@@ -37,11 +38,6 @@ export default function Listado() {
     localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
 
-  function deleteItem(id) {
-    const newArray = items.filter((item) => item.id !== id);
-    setItems(newArray);
-  }
-
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       addItem();
@@ -51,7 +47,7 @@ export default function Listado() {
   return (
     <div>
       <br />
-      <h1>General</h1>
+      <h1>Supermercado</h1>
       <input
         onKeyDown={handleKeyDown}
         type="text"
@@ -60,21 +56,13 @@ export default function Listado() {
         onChange={(e) => setNewItem(e.target.value)}
       />
 
-      <ul>
-        {items.map((item) => {
-          return (
-            <li key={item.id}>
-              {item.value}{" "}
-              <button
-                className="delete-button"
-                onClick={() => deleteItem(item.id)}
-              >
-                ❌
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      <nav className="nav">
+        <ul>
+          {items.map((item) => {
+            return <Elemento dato={item} />;
+          })}
+        </ul>
+      </nav>
     </div>
   );
 }
