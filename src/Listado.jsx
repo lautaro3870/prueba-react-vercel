@@ -51,7 +51,7 @@ export default function Listado() {
   return (
     <div>
       <br />
-      <h1>General</h1>
+      <h1>Supermercado</h1>
       <input
         onKeyDown={handleKeyDown}
         type="text"
