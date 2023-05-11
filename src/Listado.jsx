@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import Elemento from "./Elemento";
 
 const getLocalItems = () => {
   let list = localStorage.getItem("items");
@@ -44,6 +43,11 @@ export default function Listado() {
     }
   };
 
+  function deleteItem(id) {
+    const newArray = items.filter((item) => item.id !== id);
+    setItems(newArray);
+  }
+
   return (
     <div>
       <br />
@@ -58,9 +62,24 @@ export default function Listado() {
 
       <nav className="nav">
         <ul>
-          {items.map((item) => {
-            return <Elemento dato={item} />;
-          })}
+          {items.length === 0 ? (
+            <h4 style={{ color: "red" }}>Nada para comprar</h4>
+          ) : (
+            items.map((item) => (
+              <li key={item.id}>
+                {item.value}{" "}
+                <button
+                  style={{
+                    marginLeft: "10px",
+                  }}
+                  className="delete-button"
+                  onClick={() => deleteItem(item.id)}
+                >
+                  ❌
+                </button>
+              </li>
+            ))
+          )}
         </ul>
       </nav>
     </div>
