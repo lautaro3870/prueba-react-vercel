@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Listado from "./Listado";
 import Listado2 from "./Listado2";
 import { useState } from "react";
@@ -16,20 +16,27 @@ const getSuper = () => {
 };
 
 export default function Rutas() {
-
   const [supermercado, setSupermercado] = useState(getSuper());
   const [general, setGeneral] = useState([]);
 
   return (
-    <MyContext.Provider value={{supermercado, setSupermercado, general, setGeneral}}>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/">
+    <MyContext.Provider
+      value={{ supermercado, setSupermercado, general, setGeneral }}
+    >
+      <BrowserRouter>
+        <Routes>
+          {/* <Route path="/">
           <Route path="/super" element={<Listado nombre="Supermercado" />} />
-          <Route path="/general" element={<Listado2 nombre="¿Que hay que comprar?" />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          <Route path="/general" element={<Listado2 nombre="¿Que hay que hacer?" />} />
+        </Route> */}
+          <Route path="/" element={<Navigate to="/super" />} />
+          <Route path="/super" element={<Listado nombre="Supermercado" />} />
+          <Route
+            path="/general"
+            element={<Listado2 nombre="¿Que hay que hacer?" />}
+          />
+        </Routes>
+      </BrowserRouter>
     </MyContext.Provider>
   );
 }
