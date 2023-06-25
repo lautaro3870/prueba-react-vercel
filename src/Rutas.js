@@ -34,7 +34,6 @@ export default function Rutas() {
           <Route
             path="/general"
             element={<Listado2 nombre="¿Que hay que hacer?" />}
-            //Cometario
           />
         </Routes>
       </BrowserRouter>
