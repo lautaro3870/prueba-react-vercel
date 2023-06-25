@@ -3,17 +3,17 @@ import "./style.css";
 import { MyContext } from "./MyContext";
 
 const getLocalItems = () => {
-  let list = localStorage.getItem("items");
+  let list = localStorage.getItem("general");
   if (list === null) {
     return [];
   }
   console.log(list);
   if (list) {
-    return JSON.parse(localStorage.getItem("items"));
+    return JSON.parse(localStorage.getItem("general"));
   }
 };
 
-export default function Listado({nombre}) {
+export default function Listado2({nombre}) {
   const [newItem, setNewItem] = useState("");
   const [items, setItems] = useState(getLocalItems());
 
@@ -35,7 +35,7 @@ export default function Listado({nombre}) {
 
   //agregar los items al localstorage
   useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(items));
+    localStorage.setItem("general", JSON.stringify(items));
   }, [items]);
 
   function deleteItem(id) {
