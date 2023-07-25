@@ -5,6 +5,7 @@ import Barra from "./Barra";
 import Rutas from "./Rutas";
 import { MyContext } from "./MyContext";
 import { useState } from "react";
+import PruebasGrid from "./components/PruebasGrid";
 
 
 
@@ -13,8 +14,9 @@ function App() {
   console.log(a)
   return (
     <div className="App">
-      <Barra />
-      <Rutas />
+      {/* <Barra />
+      <Rutas /> */}
+      <PruebasGrid />
     </div>
   );
 }

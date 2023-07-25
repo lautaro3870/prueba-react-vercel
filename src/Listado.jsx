@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import { MyContext } from "./MyContext";
+import { ListGroup, ListGroupItem } from "react-bootstrap";
 
 const getLocalItems = () => {
   let list = localStorage.getItem("items");
@@ -13,7 +14,7 @@ const getLocalItems = () => {
   }
 };
 
-export default function Listado({nombre}) {
+export default function Listado({ nombre }) {
   const [newItem, setNewItem] = useState("");
   const [items, setItems] = useState(getLocalItems());
 
@@ -60,14 +61,40 @@ export default function Listado({nombre}) {
         value={newItem}
         onChange={(e) => setNewItem(e.target.value)}
       />
-
-      <ul>
-        {items.map((item) => {
+      <br />
+      <br />
+      <ListGroup
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          flexDirection: "column",
+        }}
+      >
+        {items.map((i) => {
           return (
-            <li key={item.id}>
-              {item.value}{" "}
+            <ListGroupItem
+              style={{ backgroundColor: "whitesmoke", marginBottom: "10px" }}
+              key={i.id}
+            >
+              {i.value}{" "}
               <button
-                className="delete-button"
+                className="btn btn-secondary"
+                onClick={() => deleteItem(i.id)}
+              >
+                ❌
+              </button>
+            </ListGroupItem>
+          );
+        })}
+      </ListGroup>
+
+      {/* <ol id="lista2">
+        {items.map((i) => {
+          return (
+            <li key={i.id}>
+              {i.value}
+              <button
+                className="btn btn-secondary"
                 onClick={() => deleteItem(item.id)}
               >
                 ❌
@@ -75,7 +102,7 @@ export default function Listado({nombre}) {
             </li>
           );
         })}
-      </ul>
+      </ol> */}
     </div>
   );
 }
