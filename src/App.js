@@ -14,9 +14,9 @@ function App() {
   console.log(a)
   return (
     <div className="App">
-      {/* <Barra />
-      <Rutas /> */}
-      <PruebasGrid />
+      <Barra />
+      <Rutas />
+      {/* <PruebasGrid /> */}
     </div>
   );
 }
