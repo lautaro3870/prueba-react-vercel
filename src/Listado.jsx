@@ -82,7 +82,7 @@ export default function Listado({ nombre }) {
               }}
               key={i.id}
             >
-              <div style={{ display: "flex", flexGrow: "1" }}>
+              <div style={{ display: "flex", flexGrow: "1", marginLeft: "2rem" }}>
                 <span>{i.value} </span>
               </div>
               <button
