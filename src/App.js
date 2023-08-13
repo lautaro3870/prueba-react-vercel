@@ -7,8 +7,6 @@ import { MyContext } from "./MyContext";
 import { useState } from "react";
 import PruebasGrid from "./components/PruebasGrid";
 
-
-
 function App() {
   var a = 16%8;
   console.log(a)
@@ -16,7 +14,6 @@ function App() {
     <div className="App">
       <Barra />
       <Rutas />
-      {/* <PruebasGrid /> */}
     </div>
   );
 }

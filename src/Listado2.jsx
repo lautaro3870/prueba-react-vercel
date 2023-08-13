@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import { MyContext } from "./MyContext";
+import io from "socket.io-client";
+import { Button } from "bootstrap";
 
 const getLocalItems = () => {
   let list = localStorage.getItem("general");
@@ -13,9 +15,11 @@ const getLocalItems = () => {
   }
 };
 
-export default function Listado2({nombre}) {
+export default function Listado2({ nombre }) {
   const [newItem, setNewItem] = useState("");
   const [items, setItems] = useState(getLocalItems());
+
+  let nuevoListado = [];
 
   function addItem() {
     console.log(newItem);
@@ -29,13 +33,34 @@ export default function Listado2({nombre}) {
       id: Math.floor(Math.random() * 1000),
       value: newItem,
     };
-    setItems((oldList) => [...oldList, item]);
+    //setItems((oldList) => [...oldList, item]);
+    setItems([...items, item]);
+
     setNewItem("");
   }
+
+  const enviarDatos = async () => {
+    // Coloca aquí la lógica que deseas ejecutar a las 5 pm
+    console.log("Tarea programada ejecutada a las 5 pm");
+
+    const url = "https://cqldg7-3007.csb.app/";
+
+    const request = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(items),
+    };
+
+    fetch(url, request)
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error.message))
+  };
 
   //agregar los items al localstorage
   useEffect(() => {
     localStorage.setItem("general", JSON.stringify(items));
+    // enviarDatos();
   }, [items]);
 
   function deleteItem(id) {
@@ -53,14 +78,18 @@ export default function Listado2({nombre}) {
     <div className="App">
       <br />
       <h1>{nombre}</h1>
-      <input
-        onKeyDown={handleKeyDown}
-        type="text"
-        placeholder="Ingrese tarea"
-        value={newItem}
-        onChange={(e) => setNewItem(e.target.value)}
-      />
-
+      <div style={{display: "flex", justifyContent: "center"}}>
+        <input
+          onKeyDown={handleKeyDown}
+          type="text"
+          placeholder="Ingrese tarea"
+          value={newItem}
+          onChange={(e) => setNewItem(e.target.value)}
+        />
+        <button onClick={() => enviarDatos()} className="btn btn-primary" style={{ marginLeft: "0.5rem" }}>
+          Enviar
+        </button>
+      </div>
       <ul>
         {items.map((item) => {
           return (

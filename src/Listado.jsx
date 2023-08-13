@@ -73,10 +73,18 @@ export default function Listado({ nombre }) {
         {items.map((i) => {
           return (
             <ListGroupItem
-              style={{ backgroundColor: "whitesmoke", marginBottom: "10px" }}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                backgroundColor: "whitesmoke",
+                marginBottom: "10px",
+              }}
               key={i.id}
             >
-              {i.value}{" "}
+              <div style={{ display: "flex", flexGrow: "1" }}>
+                <span>{i.value} </span>
+              </div>
               <button
                 className="btn btn-secondary"
                 onClick={() => deleteItem(i.id)}
