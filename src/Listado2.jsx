@@ -43,7 +43,7 @@ export default function Listado2({ nombre }) {
     // Coloca aquí la lógica que deseas ejecutar a las 5 pm
     console.log("Tarea programada ejecutada a las 5 pm");
 
-    const url = "https://cqldg7-3007.csb.app/";
+    const url = "http://localhost:3000/api/test";
 
     const request = {
       method: "POST",

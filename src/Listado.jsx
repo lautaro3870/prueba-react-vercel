@@ -3,20 +3,9 @@ import "./style.css";
 import { MyContext } from "./MyContext";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 
-const getLocalItems = () => {
-  let list = localStorage.getItem("items");
-  if (list === null) {
-    return [];
-  }
-  console.log(list);
-  if (list) {
-    return JSON.parse(localStorage.getItem("items"));
-  }
-};
-
-export default function Listado({ nombre }) {
+export default function Listado({ nombre, lista, texto }) {
   const [newItem, setNewItem] = useState("");
-  const [items, setItems] = useState(getLocalItems());
+  const [items, setItems] = useState(lista);
 
   function addItem() {
     console.log(newItem);
@@ -36,7 +25,11 @@ export default function Listado({ nombre }) {
 
   //agregar los items al localstorage
   useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(items));
+    if (nombre === "Supermercado") {
+      localStorage.setItem("items", JSON.stringify(items));
+    } else {
+      localStorage.setItem("tareas", JSON.stringify(items));
+    }
   }, [items]);
 
   function deleteItem(id) {
@@ -57,7 +50,7 @@ export default function Listado({ nombre }) {
       <input
         onKeyDown={handleKeyDown}
         type="text"
-        placeholder="Ingrese tarea"
+        placeholder={texto}
         value={newItem}
         onChange={(e) => setNewItem(e.target.value)}
       />
@@ -82,7 +75,9 @@ export default function Listado({ nombre }) {
               }}
               key={i.id}
             >
-              <div style={{ display: "flex", flexGrow: "1", marginLeft: "2rem" }}>
+              <div
+                style={{ display: "flex", flexGrow: "1", marginLeft: "2rem" }}
+              >
                 <span>{i.value} </span>
               </div>
               <button
