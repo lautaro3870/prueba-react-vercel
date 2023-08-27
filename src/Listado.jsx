@@ -9,7 +9,6 @@ export default function Listado({ nombre, lista, texto }) {
   const [items, setItems] = useState(getItemsSuper());
 
   function addItem() {
-    console.log(newItem);
 
     if (!newItem) {
       alert("Ingrese un item");
