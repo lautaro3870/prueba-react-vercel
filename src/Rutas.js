@@ -11,22 +11,36 @@ export default function Rutas() {
   const [tareas, setTareas] = useState(getItemsTareas());
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Navigate to="/super" />} />
-        <Route
-          path="/super"
-          element={<Listado lista={supermercado} nombre="Supermercado" texto="Ingrese producto" />}
-        />
-        <Route
-          path="/general"
-          element={<Listado lista={tareas} nombre="¿Que hay que hacer?" texto="Ingrese tarea"/>}
-        />
-        {/* <Route
+    <MyContext.Provider value={{}}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigate to="/super" />} />
+          <Route
+            path="/super"
+            element={
+              <Listado
+                lista={supermercado}
+                nombre="Supermercado"
+                texto="Ingrese producto"
+              />
+            }
+          />
+          <Route
+            path="/general"
+            element={
+              <Listado
+                lista={tareas}
+                nombre="¿Que hay que hacer?"
+                texto="Ingrese tarea"
+              />
+            }
+          />
+          {/* <Route
             path="/general"
             element={<Listado2 nombre="¿Que hay que hacer?" />}
           /> */}
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </MyContext.Provider>
   );
 }
