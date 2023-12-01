@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import { MyContext } from "./MyContext";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
+import { getItemsSuper } from "./utils/getItemsSuper";
 
 export default function Listado({ nombre, lista, texto }) {
   const [newItem, setNewItem] = useState("");
-  const [items, setItems] = useState(lista);
+  const [items, setItems] = useState(getItemsSuper());
 
   function addItem() {
 
@@ -24,11 +25,8 @@ export default function Listado({ nombre, lista, texto }) {
 
   //agregar los items al localstorage
   useEffect(() => {
-    if (nombre === "Supermercado") {
-      localStorage.setItem("items", JSON.stringify(items));
-    } else {
-      localStorage.setItem("tareas", JSON.stringify(items));
-    }
+    localStorage.setItem("items", JSON.stringify(items));
+    
   }, [items]);
 
   function deleteItem(id) {

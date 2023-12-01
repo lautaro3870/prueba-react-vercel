@@ -8,8 +8,7 @@ import { useState } from "react";
 import PruebasGrid from "./components/PruebasGrid";
 
 function App() {
-  var a = 16%8;
-  console.log(a)
+
   return (
     <div className="App">
       <Barra />
