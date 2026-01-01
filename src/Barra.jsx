@@ -9,7 +9,7 @@ export default function Barra() {
           <Nav className="me-auto">
             <Nav.Link href="/super">Super</Nav.Link>
             <Nav.Link href="/general">General</Nav.Link>
-            <Nav.Link href="https://calculadora-gastos-nueva.vercel.app/calculadora">Calculadora</Nav.Link>
+            <Nav.Link href="https://expense-calculator-swart.vercel.app/">Calculadora</Nav.Link>
             <Nav.Link href="https://exercise-app-hazel.vercel.app/">Ejercicios</Nav.Link>
           </Nav>
         </Container>
